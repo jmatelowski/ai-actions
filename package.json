@@ -1,0 +1,34 @@
+{
+  "name": "ai-actions",
+  "version": "1.0.0",
+  "description": "A GitHub Action that provides AI-powered changelog generation using Google's Gemini AI.",
+  "type": "module",
+  "main": "dist/index.js",
+  "author": "Jakub Matelowski",
+  "keywords": [
+    "github",
+    "action",
+    "ai",
+    "changelog"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmatelowski/ai-actions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmatelowski/ai-actions/issues"
+  },
+  "homepage": "https://github.com/jmatelowski/ai-actions#readme",
+  "scripts": {
+    "build": "npx rolldown -c rolldown.config.js"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "@google/genai": "^1.30.0",
+    "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+    "rolldown": "^1.0.0-beta.52"
+  }
+}

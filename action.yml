@@ -1,0 +1,32 @@
+name: AI Changelog
+description: A GitHub Action that provides AI-powered changelog generation using Google's Gemini AI.
+inputs:
+  GOOGLE_API_KEY:
+    description: The API key for Google Gemini AI
+    required: true
+  COMMITS_COUNT:
+    description: Number of commits to analyze (default 10)
+    required: false
+    default: "10"
+  CHANGELOG_PATH:
+    description: Path to the changelog file (default CHANGELOG.md)
+    required: false
+    default: "CHANGELOG.md"
+
+outputs:
+  changelog_content:
+    description: The generated changelog content
+  changelog_updated:
+    description: Whether the changelog was updated (true/false)
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run AI Changelog Action
+      run: node ${{ github.action_path }}/dist/index.js
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+        GOOGLE_API_KEY: ${{ inputs.GOOGLE_API_KEY }}
+        COMMITS_COUNT: ${{ inputs.COMMITS_COUNT }}
+        CHANGELOG_PATH: ${{ inputs.CHANGELOG_PATH }}

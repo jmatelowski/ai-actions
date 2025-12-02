@@ -5,7 +5,8 @@ export default defineConfig({
   output: {
     file: "dist/index.cjs",
     format: "cjs",
+    inlineDynamicImports: true,
   },
-  external: ["@actions/core", "@actions/github", "@google/genai"],
+  external: [],
   platform: "node",
 });

@@ -13,20 +13,23 @@ inputs:
     required: false
     default: "CHANGELOG.md"
 
-outputs:
-  changelog_content:
-    description: The generated changelog content
-  changelog_updated:
-    description: Whether the changelog was updated (true/false)
-
 runs:
   using: "composite"
   steps:
     - name: Run AI Changelog Action
-      run: node ${{ github.action_path }}/dist/index.js
+      id: changelog-update
+      run: node ${{ github.action_path }}/dist/index.cjs
       shell: bash
       env:
         GITHUB_TOKEN: ${{ github.token }}
         GOOGLE_API_KEY: ${{ inputs.GOOGLE_API_KEY }}
         COMMITS_COUNT: ${{ inputs.COMMITS_COUNT }}
         CHANGELOG_PATH: ${{ inputs.CHANGELOG_PATH }}
+
+outputs:
+  changelog-content:
+    description: The generated changelog content
+    value: ${{ steps.changelog-update.outputs.changelog-content }}
+  changelog-updated:
+    description: Whether the changelog was updated (true/false)
+    value: ${{ steps.changelog-update.outputs.changelog-updated }}

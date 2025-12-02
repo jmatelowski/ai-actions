@@ -46,14 +46,14 @@ async function run() {
     core.info('Step 3/3: Generating and merging changelog with AI...');
     const finalChangelog = await generateAndMergeChangelog(weeks, oldChangelog, googleApiKey);
 
-    if (!finalChangelog || finalChangelog.trim().length === 0) {
+    if (!finalChangelog) {
       core.warning('AI generated empty changelog');
       return;
     }
 
     core.info('Changelog generation completed successfully!');
-    core.setOutput('changelog_content', finalChangelog);
-    core.setOutput('changelog_updated', 'true');
+    core.setOutput('changelog-content', finalChangelog);
+    core.setOutput('changelog-updated', 'true');
 
   } catch (error) {
     core.error(`Error: ${error.message}`);

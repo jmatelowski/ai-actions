@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 import * as core from "@actions/core";
 
 /**
@@ -59,9 +59,7 @@ ${filesText}
  */
 export async function generateAndMergeChangelog(weeks, oldChangelog, apiKey) {
   try {
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
+    const genAI = new GoogleGenAI({ apiKey });
     const formattedWeeks = formatCommitsForAI(weeks);
     
     if (formattedWeeks.length === 0) {
@@ -106,13 +104,13 @@ OUTPUT FORMAT RULES:
 Return ONLY the complete merged changelog in markdown format. No explanations, no additional text.`;
 
     core.info('Sending request to Gemini AI...');
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const mergedChangelog = response.text();
+    const result = await genAI.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: prompt
+    });
     
     core.info('Successfully generated and merged changelog');
-    return mergedChangelog;
-    
+    return result.text;
   } catch (error) {
     core.error(`Error generating changelog with AI: ${error.message}`);
     throw error;

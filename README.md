@@ -47,8 +47,8 @@ jobs:
 
 | Output              | Description                                        |
 | ------------------- | -------------------------------------------------- |
-| `changelog_content` | The generated/merged changelog in markdown         |
-| `changelog_updated` | Whether the changelog was updated (`true`/`false`) |
+| `changelog-content` | The generated/merged changelog in markdown         |
+| `changelog-updated` | Whether the changelog was updated (`true`/`false`) |
 
 ## Setup
 

@@ -101,7 +101,7 @@ OUTPUT FORMAT RULES:
 - Each bullet should start with a verb (Added, Fixed, Improved, Updated, etc.)
 - Be concise but descriptive
 
-Return ONLY the complete merged changelog in text format. No explanations, no additional text.`;
+Return ONLY the complete merged changelog as raw text. No explanations, no additional text.`;
 
     core.info('Sending request to Gemini AI...');
     const result = await genAI.models.generateContent({

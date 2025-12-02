@@ -52242,8 +52242,8 @@ OUTPUT FORMAT RULES:
 - Each bullet should start with a verb (Added, Fixed, Improved, Updated, etc.)
 - Be concise but descriptive
 
-Return ONLY the complete merged changelog in markdown format. No explanations, no additional text.`;
-		import_core$1.info("Sending request to Gemini AI... :", prompt);
+Return ONLY the complete merged changelog as raw text. No explanations, no additional text.`;
+		import_core$1.info("Sending request to Gemini AI...");
 		const result = await genAI.models.generateContent({
 			model: "gemini-2.0-flash",
 			contents: prompt
@@ -52290,7 +52290,6 @@ async function run() {
 			return;
 		}
 		import_core.info("Changelog generation completed successfully!");
-		import_core.info("generated changelog:", finalChangelog);
 		import_core.setOutput("changelog-content", finalChangelog);
 		import_core.setOutput("changelog-updated", "true");
 	} catch (error$1) {
